@@ -59,4 +59,38 @@ public class Student {
     public void enrollStudent(StudyProgramme Program){
         program = Program;
     }
+
+    public int getNumberOfITN(){
+        int count = 0;
+
+        for(int i = 0; i< oceny.size(); i++){
+            if(oceny.get(i).oceny == 2){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void promoteAllStudents(){
+        for(int i = 0; i <studenci.size(); i++){
+            Student student = studenci.get(i);
+
+            if(student.getNumberOfITN() < student.program.ITN && student.status != "Graduate"){
+                student.semestr++;
+            }else{
+                System.out.println("Student nie może być promowany.");
+                return;
+            }
+        }
+
+    }
+
+    public static void displayInfoAboutAllStudents(){
+        for(int i = 0; i < studenci.size(); i++){
+            Student student = studenci.get(i);
+            System.out.println(student.imie + " "+ student.nazwisko + " - " + student.semestr);
+        }
+
+    }
+
 }
